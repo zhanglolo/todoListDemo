@@ -1,7 +1,23 @@
 import Vue from "https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js";
 
-new Vue({
+const todoListItem = {
+  props: ["list", "index"],
+  methods: {},
+  template: `
+  <li>
+    <span class="index">{{index+1}}</span>
+    <span class="todoText">{{list.todo}}</span>
+    <span class="status" @click="changeStatus(list)">{{list.done ? "已完成" : "未完成"}}</span>
+    <span class="delet" @click="deletTodoList(index)">✖︎</span>
+  </li>
+  `,
+};
+
+const vm = new Vue({
   el: "#app",
+  components: {
+    todoListItem,
+  },
   data() {
     return {
       todoLists: [],
