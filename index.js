@@ -7,8 +7,8 @@ const todoListItem = {
   <li>
     <span class="index">{{index+1}}</span>
     <span class="todoText">{{list.todo}}</span>
-    <span class="status" @click="changeStatus(list)">{{list.done ? "已完成" : "未完成"}}</span>
-    <span class="delet" @click="deletTodoList(index)">✖︎</span>
+    <span class="status" @click="$emit('change-status')">{{list.done ? "已完成" : "未完成"}}</span>
+    <span class="delet" @click="$emit('delet-todo-list')">✖︎</span>
   </li>
   `,
 };

@@ -55,6 +55,8 @@
           :list="list"
           :index="index"
           :key="list.id"
+          @change-status="changeStatus(list)"
+          @delet-todo-list="deletTodoList(index)"
         ></todo-list-item>
       </ul>
     </div>
