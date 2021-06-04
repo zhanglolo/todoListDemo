@@ -1,5 +1,5 @@
 # **todoListDemo**
-这是一个基于vue构建的todoList项目。
+这是一个基于vue2构建的todoList项目。
 [点击使用](https://zhanglolo.github.io/todoListDemo/todoList.html)
 ---
 功能：
