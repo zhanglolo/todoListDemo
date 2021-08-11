@@ -1,0 +1,22 @@
+{
+  "name": "todo-list-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zhanglolo/todoListDemo.git",
+  "author": "zhanglolo from mac <392265312@qq.com>",
+  "license": "MIT",
+  "private": "true",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite priview"
+  },
+  "dependencies": {
+    "vue": "^3.2.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.4.0",
+    "@vue/compiler-sfc": "^3.2.1",
+    "vite": "^2.4.4"
+  }
+}
