@@ -86,8 +86,11 @@ export default {
     isChecked() {
       this.updateView();
     },
-    todoLists() {
-      this.listsView = this.todoLists;
+    todoLists: {
+      handler(val, oldVal) {
+        this.listsView = this.todoLists;
+      },
+      deep: true,
     },
   },
   methods: {
@@ -190,5 +193,4 @@ ul {
   justify-content: center;
   align-items: center;
 }
-
 </style>
