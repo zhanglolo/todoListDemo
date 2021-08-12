@@ -1,6 +1,5 @@
 # **todoListDemo**
-这是一个基于vue2构建的todoList项目。
-[点击使用](https://zhanglolo.github.io/todoListDemo/todoList.html)
+这是一个基于vue3构建的todoList项目。
 ---
 功能：
 * 添加删除待办事项
@@ -9,6 +8,4 @@
 
 ---
 todo
-- 升级vue3
 - 使用composition-api
-- 使用nodejs工程化
