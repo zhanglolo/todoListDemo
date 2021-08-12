@@ -6,4 +6,4 @@ jobs:
     steps:
       - uses: actions/setup-node@main
       - run: yarn
-      - run: yarn build
+      - run: yarn run build
