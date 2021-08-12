@@ -9,6 +9,5 @@ jobs:
           node-version: '14'
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: rm -r dist
       - run: yarn
       - run: yarn run build
