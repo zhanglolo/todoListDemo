@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h1>我的待办清单V2</h1>
-    <h3>
+  <div class="bg-blue-300 h-full flex flex-col space-y-8">
+    <h1 class="text-6xl text-warm-gray-100">我的待办清单V2</h1>
+    <h3 class="text-4xl text-warm-gray-50">
       当前共有{{ todoLists.length }}个代办事项， 其中{{
         numberOfDone
       }}个已完成， 还剩{{ todoLists.length - numberOfDone }}个未完成
     </h3>
-    <div class="select">
+    <div class="space-x-4 text-white">
       <input
         name="todoSelect"
         type="radio"
@@ -26,23 +26,23 @@
         v-model="isChecked"
       />未完成
     </div>
-    <div class="addList">
+    <div class="flex justify-center space-x-3">
       <input
         type="text"
-        name="addTodoList"
+        class="w-100 h-10 rounded-1xl text-left text-xl px-4"
         placeholder="请输入待办事项"
         @keyup.enter="addTodoList"
         v-model.trim="input"
       />
       <input
         type="button"
-        name="addTodoListButton"
+        class="w-20 h-10 rounded-1xl bg-red-400 text-light-200"
         value="添加"
         @click="addTodoList"
         :disabled="isDisabled"
       />
     </div>
-    <ul>
+    <ul class="flex flex-col justify-center items-center">
       <todo-list-item
         v-for="(list, index) in listsView"
         :list="list"
@@ -128,59 +128,9 @@ watchEffect(() => {
 }
 html {
   height: 100vh;
-  background-image: linear-gradient(0deg, rgb(87, 164, 189), rgb(109, 61, 176));
 }
 #app {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-content: center;
   height: 100vh;
-  margin: auto;
-  color: #fff;
-}
-h1 {
-  margin: 20px 0;
-  font-size: 50px;
-}
-h3 {
-  font-size: 20px;
-  font-weight: 400;
-  margin: 20px 0;
-}
-.select {
-  margin: 20px 0;
-}
-.select > input {
-  margin: 0 5px 0 20px;
-}
-.addList {
-  margin: 20px 0;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-[name="addTodoList"] {
-  width: 500px;
-  height: 40px;
-  padding: 0 20px;
-  border-radius: 10px;
-  border: 1px solid #fff;
-  text-align: left;
-  font-size: 20px;
-}
-[name="addTodoListButton"] {
-  width: 65px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #fff;
-  margin-left: 20px;
-  font-size: 15px;
-}
-ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
 }
 </style>
