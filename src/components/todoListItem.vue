@@ -9,13 +9,8 @@
   </li>
 </template>
 
-<script>
-export default {
-  props: ["list", "index"],
-  data() {
-    return {};
-  },
-};
+<script setup>
+defineProps(["list", "index"]);
 </script>
 
 <style>

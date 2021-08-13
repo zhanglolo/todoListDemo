@@ -57,74 +57,86 @@
 
 <script>
 import todoListItem from "./components/todoListItem.vue";
+import { ref, reactive, computed, watch, watchEffect } from "vue";
+
 export default {
   components: {
     todoListItem,
   },
-  data() {
-    return {
-      todoLists: [],
-      listsView: [],
-      input: "",
-      isChecked: "all",
-      startId: 0,
-    };
-  },
-  computed: {
-    isDisabled() {
-      if (this.input.length > 0 && this.isChecked != "done") {
+  setup() {
+    const input = ref("");
+    const isChecked = ref("all");
+    const startId = ref("0");
+    let todoLists = reactive([]);
+    let listsView = reactive([]);
+
+    const isDisabled = computed(() => {
+      if (input.value.length > 0 && isChecked.value != "done") {
         return null;
       } else {
         return "disabled";
       }
-    },
-    numberOfDone() {
-      return this.todoLists.filter((obj) => obj.done).length;
-    },
-  },
-  watch: {
-    isChecked() {
-      this.updateView();
-    },
-    todoLists: {
-      handler(val, oldVal) {
-        this.listsView = this.todoLists;
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    addTodoList() {
-      if (this.isDisabled == "disabled") {
+    });
+
+    const numberOfDone = computed(() => {
+      return todoLists.filter((obj) => obj.done).length;
+    });
+
+    const addTodoList = () => {
+      if (isDisabled == "disabled") {
         return;
       }
-      this.todoLists.push({
-        id: ++this.startId,
-        todo: this.input,
+      todoLists.push({
+        id: ++startId.value,
+        todo: input.value,
         done: false,
       });
-      this.input = "";
-    },
-    deletTodoList(index) {
-      this.todoLists.splice(index, 1);
-    },
-    changeStatus(list) {
+      input.value = "";
+      console.log(todoLists);
+    };
+
+    const deletTodoList = (index) => {
+      todoLists.splice(index, 1);
+    };
+
+    const changeStatus = (list) => {
       list.done = !list.done;
-      this.updateView();
-    },
-    updateView() {
-      switch (this.isChecked) {
+    };
+
+    const updateView = () => {
+      switch (isChecked.value) {
         case "all":
-          this.listsView = this.todoLists;
+          listsView.length = 0;
+          listsView.push(...todoLists);
           break;
         case "done":
-          this.listsView = this.todoLists.filter((obj) => obj.done);
+          listsView.length = 0;
+          listsView.push(...todoLists.filter((obj) => obj.done));
           break;
         case "todo":
-          this.listsView = this.todoLists.filter((obj) => !obj.done);
+          listsView.length = 0;
+          listsView.push(...todoLists.filter((obj) => !obj.done));
           break;
       }
-    },
+    };
+
+    watchEffect(() => {
+      updateView();
+    });
+
+    return {
+      input,
+      isChecked,
+      startId,
+      todoLists,
+      listsView,
+      isDisabled,
+      numberOfDone,
+      addTodoList,
+      deletTodoList,
+      changeStatus,
+      updateView,
+    };
   },
 };
 </script>
