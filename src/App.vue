@@ -92,7 +92,6 @@ export default {
         done: false,
       });
       input.value = "";
-      console.log(todoLists);
     };
 
     const deletTodoList = (index) => {
