@@ -2,9 +2,9 @@
   <div class="bg-blue-300 h-full flex flex-col space-y-8 text-center">
     <h1 class="text-6xl text-warm-gray-100">我的待办清单V2</h1>
     <h3 class="text-4xl text-warm-gray-50">
-      当前共有{{ todoLists.length }}个代办事项， 其中{{
+      当前共有{{ todo.list.length }}个代办事项， 其中{{
         numberOfDone
-      }}个已完成， 还剩{{ todoLists.length - numberOfDone }}个未完成
+      }}个已完成， 还剩{{ todo.list.length - numberOfDone }}个未完成
     </h3>
     <div class="space-x-4 text-white">
       <input
@@ -52,28 +52,53 @@
         :disabled="isDisabled"
       />
     </div>
-    <ul class="flex flex-col justify-center items-center">
-      <todo-list-item
-        v-for="(list, index) in listsView"
-        :list="list"
-        :index="index"
-        :key="list.id"
-        @change-status="changeStatus(list)"
-        @delet-todo-list="deletTodoList(index)"
-      ></todo-list-item>
-    </ul>
+    <div class="flex items-start">
+      <ul class="flex flex-col justify-center items-center">
+        <todo-list-item
+          v-for="(list, index) in todo.list"
+          :list="list"
+          :index="index"
+          :key="list.id"
+          @change-status="changeStatus(list)"
+          @delet-todo-list="deletTodoList(index)"
+        ></todo-list-item>
+      </ul>
+
+      <ul class="flex flex-col justify-center items-center">
+        <todo-list-item
+          v-for="(list, index) in finish.list"
+          :list="list"
+          :index="index"
+          :key="list.id"
+          @change-status="changeStatus(list)"
+          @delet-todo-list="deletTodoList(index)"
+        ></todo-list-item>
+      </ul>
+
+      <ul class="flex flex-col justify-center items-center">
+        <todo-list-item
+          v-for="(list, index) in undo.list"
+          :list="list"
+          :index="index"
+          :key="list.id"
+          @change-status="changeStatus(list)"
+          @delet-todo-list="deletTodoList(index)"
+        ></todo-list-item>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script setup>
 import todoListItem from "./components/todoListItem.vue";
-import { ref, reactive, computed, watch, watchEffect } from "vue";
+import { ref, reactive, computed, watchEffect } from "vue";
 
 const input = ref("");
 const isChecked = ref("all");
 const startId = ref("0");
-let todoLists = reactive([]);
-let listsView = reactive([]);
+const todo = reactive({ list: [] });
+const finish = reactive({ list: [] });
+const undo = reactive({ list: [] });
 
 const isDisabled = computed(() => {
   if (input.value.length > 0 && isChecked.value != "done") {
@@ -84,14 +109,14 @@ const isDisabled = computed(() => {
 });
 
 const numberOfDone = computed(() => {
-  return todoLists.filter((obj) => obj.done).length;
+  return todo.list.filter((obj) => obj.done).length;
 });
 
 const addTodoList = () => {
   if (isDisabled == "disabled") {
     return;
   }
-  todoLists.push({
+  todo.list.push({
     id: ++startId.value,
     todo: input.value,
     done: false,
@@ -100,32 +125,16 @@ const addTodoList = () => {
 };
 
 const deletTodoList = (index) => {
-  todoLists.splice(index, 1);
+  todo.list.splice(index, 1);
 };
 
 const changeStatus = (list) => {
   list.done = !list.done;
 };
 
-const updateView = () => {
-  switch (isChecked.value) {
-    case "all":
-      listsView.length = 0;
-      listsView.push(...todoLists);
-      break;
-    case "done":
-      listsView.length = 0;
-      listsView.push(...todoLists.filter((obj) => obj.done));
-      break;
-    case "todo":
-      listsView.length = 0;
-      listsView.push(...todoLists.filter((obj) => !obj.done));
-      break;
-  }
-};
-
 watchEffect(() => {
-  updateView();
+  finish.list = todo.list.filter((obj) => obj.done);
+  undo.list = todo.list.filter((obj) => !obj.done);
 });
 </script>
 
