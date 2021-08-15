@@ -6,26 +6,6 @@
         numberOfDone
       }}个已完成， 还剩{{ todo.list.length - numberOfDone }}个未完成
     </h3>
-    <div class="space-x-4 text-white">
-      <input
-        name="todoSelect"
-        type="radio"
-        value="all"
-        v-model="isChecked"
-      />所有
-      <input
-        name="todoSelect"
-        type="radio"
-        value="done"
-        v-model="isChecked"
-      />已完成
-      <input
-        name="todoSelect"
-        type="radio"
-        value="todo"
-        v-model="isChecked"
-      />未完成
-    </div>
     <div class="flex justify-center space-x-3">
       <input
         type="text"
@@ -52,8 +32,28 @@
         :disabled="isDisabled"
       />
     </div>
-    <div class="flex items-start">
-      <ul class="flex flex-col justify-center items-center">
+    <div class="space-x-4 text-white">
+      <input
+        name="todoSelect"
+        type="radio"
+        value="all"
+        v-model="isChecked"
+      />所有
+      <input
+        name="todoSelect"
+        type="radio"
+        value="done"
+        v-model="isChecked"
+      />已完成
+      <input
+        name="todoSelect"
+        type="radio"
+        value="todo"
+        v-model="isChecked"
+      />未完成
+    </div>
+    <div class="flex items-start justify-between">
+      <ul class="flex flex-col w-1/3 justify-center items-center space-y-2">
         <todo-list-item
           v-for="(list, index) in todo.list"
           :list="list"
@@ -64,7 +64,7 @@
         ></todo-list-item>
       </ul>
 
-      <ul class="flex flex-col justify-center items-center">
+      <ul class="flex flex-col w-1/3 justify-center items-center space-y-2">
         <todo-list-item
           v-for="(list, index) in finish.list"
           :list="list"
@@ -75,7 +75,7 @@
         ></todo-list-item>
       </ul>
 
-      <ul class="flex flex-col justify-center items-center">
+      <ul class="flex flex-col w-1/3 justify-center items-center space-y-2">
         <todo-list-item
           v-for="(list, index) in undo.list"
           :list="list"
@@ -140,7 +140,7 @@ watchEffect(() => {
 
 <style>
 * {
-  box-sizing: border-box;
+  box-sizing: content-box;
   margin: 0;
   padding: 0;
 }
