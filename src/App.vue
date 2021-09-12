@@ -1,6 +1,6 @@
 <template>
   <div class="bg-blue-300 h-full flex flex-col space-y-8 text-center">
-    <h1 class="text-6xl text-warm-gray-100">我的待办清单V2</h1>
+    <h1 class="text-6xl text-warm-gray-100">我的待办清单V3</h1>
     <h3 class="text-4xl text-warm-gray-50">
       当前共有{{ todo.list.length }}个代办事项， 其中{{
         numberOfDone
