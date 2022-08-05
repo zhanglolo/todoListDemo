@@ -13,8 +13,8 @@ jobs:
         persist-credentials: false
     - name: Install and Build
       run: |
-        npm install pnpm -g
-        pnpm i
+        npm install pnpm --location=global
+        pnpm i --no-frozen-lockfile
         pnpm run build
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
