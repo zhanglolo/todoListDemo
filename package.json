@@ -12,13 +12,11 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.11"
+    "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.6.2",
-    "@vue/compiler-sfc": "^3.2.11",
-    "vite": "^2.5.6",
-    "vite-plugin-windicss": "^1.4.2",
-    "windicss": "^3.1.7"
+    "@vitejs/plugin-vue": "^3.0.1",
+    "unocss": "^0.45.4",
+    "vite": "^3.0.4"
   }
 }

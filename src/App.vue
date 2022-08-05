@@ -9,7 +9,7 @@
     <div class="flex justify-center space-x-3">
       <input
         type="text"
-        class="w-100 h-10 rounded-1xl text-left text-xl px-4 shadow-md"
+        class="w-100 h-10 rounded-2 text-left text-xl px-4 shadow"
         placeholder="请输入待办事项"
         @keyup.enter="addTodoList"
         v-model.trim="input"
@@ -19,13 +19,13 @@
         class="
           w-20
           h-10
-          rounded-1xl
+          text-xl
+          rounded-2
           bg-red-500
           text-warm-gray-100
           hover:bg-red-600
-          shadow-md
-          disabled:(bg-red-200
-          text-warm-gray-400)
+          shadow
+          disabled:(bg-red-200 text-warm-gray-400)
         "
         value="添加"
         @click="addTodoList"
@@ -143,6 +143,7 @@ watchEffect(() => {
   box-sizing: content-box;
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 html {
   height: 100vh;
